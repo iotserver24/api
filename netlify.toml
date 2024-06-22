@@ -1,0 +1,11 @@
+[build]
+  publish = "public" # Directory to publish (change if needed)
+  command = "npm run build" # Build command (change if needed)
+
+[functions]
+  directory = "functions" # Directory where Netlify functions (APIs) are stored
+
+[[redirects]]
+  from = "/*"
+  to = "./src/index.js"
+  status = 200
