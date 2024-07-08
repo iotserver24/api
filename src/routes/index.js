@@ -53,16 +53,8 @@ export const cache = apicache.options({
 router.use(
   "/",
   cors({
-    origin:
-      env.data.BLOCK_WITH_CORS === "true" && env.data.ALLOWLIST
-        ? env.data.ALLOWLIST.split(",")
-        : "*",
-    exposedHeaders: [
-      "x-amv-trueIP",
-      "x-amv-trueHost",
-      "x-amv-trueUA",
-      "x-amv-info",
-    ],
+    origin: "*"
+      
   })
 );
 router.use("/", checkDomain);
@@ -71,7 +63,6 @@ router.use("/", (req, res, next) => {
   res.setHeader("x-amv-version", pkg.version || "0.0.0");
   next();
 });
-router.use("/", cache("30 minutes"));
 router.use("/", limiter);
 router.use("/v1", v1);
 router.use("/v2", v2);
